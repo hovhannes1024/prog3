@@ -1,24 +1,23 @@
 //! Setting global arrays  --  START
-var side = 10;
-var lightningArr = [];
-var grassArr = [];
-var grasseaterArr = [];
-var predatorArr = [];
-var waterArr = [];
-var matrix = [];
-var grassCount = 1000;
-var waterCount = 20;
-var grasseaterCount = 100;
-var predatorCount = 120;
-var height_ = 60;
-var width_ = 60;
+side = 10;
+lightningArr = [];
+grassArr = [];
+grasseaterArr = [];
+predatorArr = [];
+waterArr = [];
+matrix = [];
+grassCount = 1000;
+waterCount = 20;
+grasseaterCount = 100;
+predatorCount = 120;
+lightningCount = 1;
 //! Setting global arrays  -- END
 
 
 
 //! Creating MATRIX -- START
 let random = require('./modules/random');
-function matrixGenerator(matrixSize, grass, grassEater, grassEaterEater, waterArr, fireArr) {
+function matrixGenerator(matrixSize, grass, grassEater, predator, water, lightning) {
     for (let i = 0; i < matrixSize; i++) {
         matrix[i] = [];
         for (let o = 0; o < matrixSize; o++) {
@@ -35,23 +34,23 @@ function matrixGenerator(matrixSize, grass, grassEater, grassEaterEater, waterAr
         let customY = Math.floor(random(matrixSize));
         matrix[customY][customX] = 2;
     }
-    for (let i = 0; i < grassEaterEater; i++) {
+    for (let i = 0; i < predator; i++) {
         let customX = Math.floor(random(matrixSize));
         let customY = Math.floor(random(matrixSize));
         matrix[customY][customX] = 3;
     }
-    for (let i = 0; i < waterArr; i++) {
+    for (let i = 0; i < water; i++) {
         let customX = Math.floor(random(matrixSize));
         let customY = Math.floor(random(matrixSize));
         matrix[customY][customX] = 4;
     }
-    for (let i = 0; i < fireArr; i++) {
+    for (let i = 0; i < lightning; i++) {
         let customX = Math.floor(random(matrixSize));
         let customY = Math.floor(random(matrixSize));
         matrix[customY][customX] = 5;
     }
 }
-matrixGenerator(10, 5, 1);
+matrixGenerator(60,grassCount,grasseaterCount,predatorCount,waterCount,lightningCount);
 //! Creating MATRIX -- END
 
 
