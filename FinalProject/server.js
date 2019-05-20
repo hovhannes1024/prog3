@@ -11,6 +11,8 @@ waterCount = 20;
 grasseaterCount = 100;
 predatorCount = 120;
 lightningCount = 1;
+grassHashiv = 0;
+grassEaterHashiv = 0;
 //! Setting global arrays  -- END
 
 
@@ -56,8 +58,11 @@ matrixGenerator(60,grassCount,grasseaterCount,predatorCount,waterCount,lightning
 
 
 //! Requiring modules  --  START
-var Grass = require("./modules/grass.js");
+var Grass = require("./modules/grass");
 var GrassEater = require("./modules/eatgrass");
+var Predator = require("./modules/predator");
+var Water = require("./modules/water");
+var Lightning = require("./modules/lightning");
 //! Requiring modules  --  END
 
 
@@ -82,9 +87,20 @@ function creatingObjects() {
             if (matrix[y][x] == 2) {
                 var grassEater = new GrassEater(x, y);
                 grasseaterArr.push(grassEater);
-            } else if (matrix[y][x] == 1) {
+                grassEaterHashiv++;
+            }else if (matrix[y][x] == 1) {
                 var grass = new Grass(x, y);
                 grassArr.push(grass);
+                grassHashiv++;
+            }else if (matrix[y][x] == 3) {
+                var predator = new Predator(x, y);
+                predatorArr.push(predator);
+            }else if (matrix[y][x] == 4) {
+                var water = new Water(x, y);
+                waterArr.push(water);
+            }else if (matrix[y][x] == 5) {
+                var lightning = new Lightning(x, y);
+                lightningArr.push(lightning);
             }
         }
     }
@@ -104,10 +120,27 @@ function game() {
             grasseaterArr[i].eat();
         }
     }
+    if (predatorArr[0] !== undefined) {
+        for (var i in predatorArr) {
+            predatorArr[i].eat();
+        }
+    }
+    if (waterArr[0] !== undefined) {
+        for (var i in waterArr) {
+            waterArr[i].mul();
+        }
+    }
+    if (lightningArr[0] !== undefined) {
+        for (var i in lightningArr) {
+            lightningArr[i].move();
+        }
+    }
 
     //! Object to send
     let sendData = {
-        matrix: matrix
+        matrix: matrix,
+        grassCounter: grassHashiv,
+        grassEaterCounter: grassEaterHashiv
     }
 
     //! Send data over the socket to clients who listens "data"
@@ -116,4 +149,4 @@ function game() {
 
 
 
-setInterval(game, 1000)
+setInterval(game, 1000);

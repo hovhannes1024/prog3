@@ -58,8 +58,8 @@ module.exports = class Lightning extends parent {
         this.multiply++;
         if (this.multiply >= 5) {
             matrix[this.y][this.x] = 0;
-            let y = floor(random(matrix.length));
-            let x = floor(random(matrix[y].length));
+            let y = Math.floor(random(matrix.length));
+            let x = Math.floor(random(matrix[y].length));
             matrix[y][x] = 5;
             this.x = x;
             this.y = y;

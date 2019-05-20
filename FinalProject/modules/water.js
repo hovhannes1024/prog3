@@ -1,4 +1,6 @@
 let parent = require('./parent');
+var random = require("./random");
+var Grass = require("./grass");
 module.exports = class Water extends parent {
     constructor(x, y) {
         super(x,y);

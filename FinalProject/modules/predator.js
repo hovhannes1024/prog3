@@ -1,4 +1,5 @@
 let parent = require('./parent');
+var random = require("./random");
 module.exports = class Predator extends parent {
     constructor(x, y) {
         super(x,y);
