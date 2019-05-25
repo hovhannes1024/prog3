@@ -4,11 +4,10 @@ function setup() {
     var side = 30;
     var matrix = [];
     //! Getting DOM objects (HTML elements)
-    let grassCount = document.getElementById('grassCount');
-    let grassEaterCount = document.getElementById('grassEaterCount');
+    var grassCount = document.getElementById('grassCount');
+    var grassEaterCount = document.getElementById('grassEaterCount');
     //! adding socket listener on "data" <-- name, after that fire 'drawCreatures' function 
     socket.on("data", drawCreatures);
-
     function drawCreatures(data) {
         //! after getting data pass it to matrix variable
         matrix = data.matrix;

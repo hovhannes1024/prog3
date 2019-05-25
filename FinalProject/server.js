@@ -11,12 +11,9 @@ waterCount = 20;
 grasseaterCount = 100;
 predatorCount = 120;
 lightningCount = 1;
-grassHashiv = 0;
-grassEaterHashiv = 0;
+var grassHashiv = 0;
+var grassEaterHashiv = 0;
 //! Setting global arrays  -- END
-
-
-
 //! Creating MATRIX -- START
 let random = require('./modules/random');
 function matrixGenerator(matrixSize, grass, grassEater, predator, water, lightning) {
@@ -52,11 +49,8 @@ function matrixGenerator(matrixSize, grass, grassEater, predator, water, lightni
         matrix[customY][customX] = 5;
     }
 }
-matrixGenerator(60,grassCount,grasseaterCount,predatorCount,waterCount,lightningCount);
+matrixGenerator(60, grassCount, grasseaterCount, predatorCount, waterCount, lightningCount);
 //! Creating MATRIX -- END
-
-
-
 //! Requiring modules  --  START
 var Grass = require("./modules/grass");
 var GrassEater = require("./modules/eatgrass");
@@ -64,9 +58,6 @@ var Predator = require("./modules/predator");
 var Water = require("./modules/water");
 var Lightning = require("./modules/lightning");
 //! Requiring modules  --  END
-
-
-
 //! SERVER STUFF  --  START
 var express = require('express');
 var app = express();
@@ -78,9 +69,6 @@ app.get('/', function (req, res) {
 });
 server.listen(3000);
 //! SERVER STUFF END  --  END
-
-
-
 function creatingObjects() {
     for (var y = 0; y < matrix.length; y++) {
         for (var x = 0; x < matrix[y].length; x++) {
@@ -88,17 +76,17 @@ function creatingObjects() {
                 var grassEater = new GrassEater(x, y);
                 grasseaterArr.push(grassEater);
                 grassEaterHashiv++;
-            }else if (matrix[y][x] == 1) {
+            } else if (matrix[y][x] == 1) {
                 var grass = new Grass(x, y);
                 grassArr.push(grass);
                 grassHashiv++;
-            }else if (matrix[y][x] == 3) {
+            } else if (matrix[y][x] == 3) {
                 var predator = new Predator(x, y);
                 predatorArr.push(predator);
-            }else if (matrix[y][x] == 4) {
+            } else if (matrix[y][x] == 4) {
                 var water = new Water(x, y);
                 waterArr.push(water);
-            }else if (matrix[y][x] == 5) {
+            } else if (matrix[y][x] == 5) {
                 var lightning = new Lightning(x, y);
                 lightningArr.push(lightning);
             }
@@ -106,9 +94,6 @@ function creatingObjects() {
     }
 }
 creatingObjects();
-
-
-
 function game() {
     if (grassArr[0] !== undefined) {
         for (var i in grassArr) {
@@ -135,18 +120,13 @@ function game() {
             lightningArr[i].move();
         }
     }
-
     //! Object to send
     let sendData = {
         matrix: matrix,
         grassCounter: grassHashiv,
         grassEaterCounter: grassEaterHashiv
     }
-
     //! Send data over the socket to clients who listens "data"
     io.sockets.emit("data", sendData);
 }
-
-
-
 setInterval(game, 1000);
