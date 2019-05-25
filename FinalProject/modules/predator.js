@@ -109,6 +109,7 @@ module.exports = class Predator extends parent {
 
             var newPredator = new Predator(x, y);
             predatorArr.push(newPredator);
+            predatorHashiv++;
 
             matrix[y][x] = 3;
             this.multiply = 0;

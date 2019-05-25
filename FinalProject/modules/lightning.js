@@ -1,5 +1,6 @@
 let parent = require('./parent');
 var random = require("./random");
+var Fire = require("./fire");
 module.exports = class Lightning extends parent {
     constructor(x, y) {
         super(x,y);
@@ -34,24 +35,28 @@ module.exports = class Lightning extends parent {
             let x1 = cord[i][0];
             let y1 = cord[i][1];
             matrix[y1][x1] = 0;
-            for (let j in waterArr) {
-                if (x1 == waterArr[j].x && y1 == waterArr[j].y) {
-                    waterArr.splice(j, 1);
-                }
-            }
             for (let j in predatorArr) {
                 if (x1 == predatorArr[j].x && y1 == predatorArr[j].y) {
                     predatorArr.splice(j, 1);
+                    var newFire = new Fire(x1, y1);
+                    fireArr.push(newFire);
+                    fireHashiv++;
                 }
             }
             for (let j in grasseaterArr) {
                 if (x1 == grasseaterArr[j].x && y1 == grasseaterArr[j].y) {
                     grasseaterArr.splice(j, 1);
+                    var newFire = new Fire(x1, y1);
+                    fireArr.push(newFire);
+                    fireHashiv++;
                 }
             }
             for (let j in grassArr) {
                 if (x1 == grassArr[j].x && y1 == grassArr[j].y) {
                     grassArr.splice(j, 1);
+                    var newFire = new Fire(x1, y1);
+                    fireArr.push(newFire);
+                    fireHashiv++;
                 }
             }
         }
@@ -64,6 +69,7 @@ module.exports = class Lightning extends parent {
             this.x = x;
             this.y = y;
             this.multiply = 0;
+            lightningHashiv++;
         }
     }
 }

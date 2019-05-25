@@ -48,6 +48,7 @@ module.exports = class Grass extends parent {
 
                 var newGrass = new Grass(x, y);
                 grassArr.push(newGrass);
+                grassHashiv++;
 
                 matrix[y][x] = 1;
                 this.multiply = 0;

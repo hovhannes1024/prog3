@@ -5,14 +5,14 @@ grassArr = [];
 grasseaterArr = [];
 predatorArr = [];
 waterArr = [];
+fireArr = [];
 matrix = [];
-grassCount = 1000;
-waterCount = 20;
-grasseaterCount = 100;
-predatorCount = 120;
-lightningCount = 1;
-var grassHashiv = 0;
-var grassEaterHashiv = 0;
+grassHashiv = 0;
+grassEaterHashiv = 0;
+predatorHashiv = 0;
+waterHashiv = 0;
+lightningHashiv = 0;
+fireHashiv = 0;
 //! Setting global arrays  -- END
 //! Creating MATRIX -- START
 let random = require('./modules/random');
@@ -49,7 +49,7 @@ function matrixGenerator(matrixSize, grass, grassEater, predator, water, lightni
         matrix[customY][customX] = 5;
     }
 }
-matrixGenerator(60, grassCount, grasseaterCount, predatorCount, waterCount, lightningCount);
+matrixGenerator(40, 400, 100, 50, 10, 1);
 //! Creating MATRIX -- END
 //! Requiring modules  --  START
 var Grass = require("./modules/grass");
@@ -83,12 +83,19 @@ function creatingObjects() {
             } else if (matrix[y][x] == 3) {
                 var predator = new Predator(x, y);
                 predatorArr.push(predator);
+                predatorHashiv++;
             } else if (matrix[y][x] == 4) {
                 var water = new Water(x, y);
                 waterArr.push(water);
+                waterHashiv++;
             } else if (matrix[y][x] == 5) {
                 var lightning = new Lightning(x, y);
                 lightningArr.push(lightning);
+                lightningHashiv++;
+            } else if (matrix[y][x] == 6) {
+                var fire = new Fire(x, y);
+                fireArr.push(lightning);
+                fierHashiv++;
             }
         }
     }
@@ -120,13 +127,22 @@ function game() {
             lightningArr[i].move();
         }
     }
+    if (fireArr[0] !== undefined) {
+        for (var i in fireArr) {
+            fireArr[i].eat();
+        }
+    }
     //! Object to send
     let sendData = {
         matrix: matrix,
         grassCounter: grassHashiv,
-        grassEaterCounter: grassEaterHashiv
+        grassEaterCounter: grassEaterHashiv,
+        predatorCounter: predatorHashiv,
+        waterCounter: waterHashiv,
+        lightningCounter: lightningHashiv,
+        fierCounter: fireHashiv
     }
     //! Send data over the socket to clients who listens "data"
     io.sockets.emit("data", sendData);
 }
-setInterval(game, 1000);
+setInterval(game, 500);
