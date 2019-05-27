@@ -5,6 +5,7 @@ module.exports = class Water extends parent {
     constructor(x, y) {
         super(x,y);
         this.multiply = 0;
+        this.directions = [];
     }
     newDirections() {
         this.directions = [
@@ -33,20 +34,22 @@ module.exports = class Water extends parent {
         return found;
     }
     mul() {
-        this.multiply++;
-        if (this.multiply >= 8) {
+        if(season != 3){
+            this.multiply++;
+            if (this.multiply >= 8) {
 
-            var fundCords = this.getDirections(0);
-            var cord = random(fundCords);
-            if (cord) {
-                var x = cord[0];
-                var y = cord[1];
+                var fundCords = this.getDirections(0);
+                var cord = random(fundCords);
+                if (cord) {
+                    var x = cord[0];
+                    var y = cord[1];
 
-                var newGrass = new Grass(x, y);
-                grassArr.push(newGrass);
+                    var newGrass = new Grass(x, y);
+                    grassArr.push(newGrass);
 
-                matrix[y][x] = 1;
-                this.multiply = 0;
+                    matrix[y][x] = 1;
+                    this.multiply = 0;
+                }
             }
         }
     }

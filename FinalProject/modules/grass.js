@@ -5,7 +5,7 @@ module.exports = class Grass extends parent {
         super(x,y);
         this.energy = 5;
         this.multiply = 0;
-
+        this.directions = [];
     }
 
     newDirections() {

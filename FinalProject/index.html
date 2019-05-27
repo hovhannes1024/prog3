@@ -42,48 +42,65 @@
                 <th scope="col">Գույն</th>
                 <th scope="col">Նկարագրություն</th>
                 <th scope="col">Ծնվել է</th>
+                <th scope="col">Կա-(%)</th>
             </tr>
         </thead>
         <tbody>
             <tr>
                 <th scope="row">1</th>
-                <td scope="row" style="background-color:green;"></td>
-                <td>Կանաչը խոտն է, որը բազմանում է 3 ցիկլը մեկ Մոտակա 8 վանդակներում,մահանում է երբ նրան ուտում է խոտակերը</td>
+                <td id="grassColor" scope="row">ավելացնել խոտ</td>
+                <td>Խոտն է, որը բազմանում է 3 ցիկլը մեկ Մոտակա 8 վանդակներում,մահանում է երբ նրան ուտում է խոտակերը</td>
                 <td id="grassCount"></td>
+                <td id="grassCount1"></td>
             </tr>
             <tr>
                 <th scope="row">2</th>
-                <td scope="row" style="background-color:yellow;"></td>
-                <td>Դեղինը խոտակերն է, որը բազմանում է 4 հատ խոտ ուտելուց հետո և մահանում է 3 հատ չուտելուց հետո, կամ
+                <td id="eatgrassColor" scope="row" style="background-color:yellow;">ավելացնել խոտակեր</td>
+                <td>Խոտակերն է, որը բազմանում է 2 հատ խոտ ուտելուց հետո և մահանում է 2 հատ չուտելուց հետո, կամ
                     երբ նրան ուտում է գիշատիչը</td>
                 <td id="grassEaterCount"></td>
+                <td id="grassEaterCount1"></td>
             </tr>
             <tr>
                 <th scope="row">3</th>
-                <td scope="row" style="background-color:purple;"></td>
-                <td>Մանուշակագույնը գիշատիչն է, որը բազմանում է 4 հատ խոտակեր ուտելուց հետո և մահանում է 10 հատ չուտելուց հետո</td>
+                <td id="predatorColor" scope="row" style="background-color:purple;">ավելացնել գիշատիչ</td>
+                <td>Գիշատիչն է, որը բազմանում է 10 հատ խոտակեր կամ մահացած կենդանի ուտելուց հետո և մահանում է 4 հատ
+                    չուտելուց հետո</td>
                 <td id="predatorCount"></td>
+                <td id="predatorCount1"></td>
             </tr>
             <tr>
                 <th scope="row">4</th>
-                <td scope="row" style="background-color:blue;"></td>
-                <td>Կապույտը ջուրն է, որի շուրջը խոտ է աճում</td>
+                <td id="waterColor" scope="row">ավելացնել ջուր</td>
+                <td id="waterDescription"></td>
                 <td id="waterCount"></td>
+                <td id="waterCount1"></td>
             </tr>
             <tr>
                 <th scope="row">5</th>
-                <td scope="row" style="background-color:lightblue"></td>
-                <td>Բաց կապույտը կայծակն է, որը Հայտնվում է պատահական վայրում 5 ցիկլը մեկ և անհետանում</td>
+                <td id="lightningColor" scope="row" style="background-color:orange">ավելացնել կայծակ</td>
+                <td>Կայծակն է, որը Հայտնվում է պատահական վայրում 5 ցիկլը մեկ և անհետանում</td>
                 <td id="lightningCount"></td>
+                <td id="lightningCount1"></td>
             </tr>
             <tr>
                 <th scope="row">6</th>
-                <td scope="row" style="background-color:red"></td>
-                <td>կարմիրը կրակն է, որը Հայտնվում է կայծակի մոտ և հանգում է 3 ցիկլից</td>
+                <td id="fireColor" scope="row" style="background-color:red">ավելացնել Կրակ</td>
+                <td>Կրակն է, որը Հայտնվում է կայծակի մոտ և հանգում է 3 ցիկլից</td>
                 <td id="fireCount"></td>
+                <td id="fireCount1"></td>
+            </tr>
+            <tr>
+                <th scope="row">6</th>
+                <td id="diedColor" scope="row" style="background-color:#669900">ավելացնել մահացած կենդանի</td>
+                <td>Մահացած կենդանին է, որը Հայտնվում է մահացած խոտակերների ու գիշատիչների փոխարեն և անհետանում է 0-2
+                    ցիկլում</td>
+                <td id="died"></td>
+                <td id="died1"></td>
             </tr>
         </tbody>
     </table>
+    <h1 id="season" style="margin: auto;"></h1>
 </body>
 
 </html>

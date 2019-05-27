@@ -2,7 +2,7 @@ let parent = require('./parent');
 var random = require("./random");
 module.exports = class Fire extends parent {
     constructor(x, y) {
-        super(x,y);
+        super(x, y);
         this.energy = 3;
         this.directions = [];
     }
@@ -28,20 +28,14 @@ module.exports = class Fire extends parent {
         }
         return found;
     }
-    getDirections(t,t1,t2) {
+    getDirections(t,t1) {
         this.newDirections();
         var found = [];
         for (var i in this.directions) {
             var x = this.directions[i][0];
             var y = this.directions[i][1];
             if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
-                if (matrix[y][x] == t) {
-                    found.push(this.directions[i]);
-                }
-                if (matrix[y][x] == t1) {
-                    found.push(this.directions[i]);
-                }
-                if (matrix[y][x] == t2) {
+                if (matrix[y][x] == t || matrix[y][x] == t1) {
                     found.push(this.directions[i]);
                 }
             }
@@ -49,7 +43,7 @@ module.exports = class Fire extends parent {
         return found;
     }
     eat() {
-        var fundCords = this.getDirections(1,2,3);
+        var fundCords = this.getDirections(1, 7);
         var cord = random(fundCords);
 
         if (cord) {
@@ -69,14 +63,9 @@ module.exports = class Fire extends parent {
                     grassArr.splice(i, 1);
                 }
             }
-            for (var i in grasseaterArr) {
-                if (x == grasseaterArr[i].x && y == grasseaterArr[i].y) {
-                    grasseaterArr.splice(i, 1);
-                }
-            }
-            for (var i in predatorArr) {
-                if (x == predatorArr[i].x && y == predatorArr[i].y) {
-                    predatorArr.splice(i, 1);
+            for (var i in diedArr) {
+                if (x == diedArr[i].x && y == diedArr[i].y) {
+                    diedArr.splice(i, 1);
                 }
             }
         }
